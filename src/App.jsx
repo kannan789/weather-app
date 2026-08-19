@@ -3,7 +3,7 @@ import './App.css'
 
 function App() {
 
-  const [weatherData, setWeatherData] = useState([]);
+  const [weatherData, setWeatherData] = useState({});
 
 
    useEffect(()=> {
@@ -24,16 +24,18 @@ function App() {
 
   return (
     <>
+
+    <h1 style={{color:"lightpink"}}>Today's Weather</h1>
       
-      <div>
+      <div style={{color:"#FFFFFF",marginTop:"100px",fontSize:"25px",marginLeft:"20px",textAlign:"left"}}>
 
         <h3>Latitude:{weatherData.latitude}</h3>
 
         <h3>Longitude:{weatherData.longitude}</h3>
 
-        <h3>Current time: {weatherData.current.time}</h3>
+        <h3>Current time: {weatherData?.current?.time}{weatherData?.timezone}</h3>
 
-        <h3>Current temperature: </h3>
+        <h3>Current temperature: {weatherData?.current?.temperature_2m}{weatherData?.current_units?.temperature_2m}</h3>
 
 
       </div>
