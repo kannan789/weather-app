@@ -5,6 +5,8 @@ function App() {
 
   const [weatherData, setWeatherData] = useState({});
 
+  const [tempList,setTempList]=useState([[]]);
+
 
    useEffect(()=> {
     fetchWeatherData();
@@ -19,7 +21,16 @@ function App() {
           console.log(data);
 
           setWeatherData(data);
+
+          for(let i=0;i<24;i++)
+          {
+           setTempList[i][0]=weatherData?.hourly?.temperature_2m[i];
+           setTempList[i][1]=weatherData?.hourly?.time[i];
+          }
    }
+
+ 
+  
  
 
   return (
@@ -39,6 +50,46 @@ function App() {
 
 
       </div>
+
+      <div> 
+        
+        <h1 style={{color:"#FFFFFF"}}>Hourly Temperature Today</h1> 
+        {/* <div style={{color:"#FFFFFF", display:"flex",gap:"10px", flexWrap:"wrap"}}>{weatherData?.hourly?.temperature_2m.map((temp)=>
+        
+       {
+        return <div style={{color:"#FFFFFF", display:"flex"}}>{temp}</div>
+      
+    
+        }
+        
+        )}</div>
+
+        <div style={{color:"#FFFFFF", display:"flex",gap:"10px", flexWrap:"wrap"}}>{weatherData?.hourly?.time.map((temp)=>
+        
+        {
+         return <div style={{color:"#FFFFFF", display:"flex"}}>{temp.substr(11,16)}</div>}
+        
+         
+         )}</div> */}
+
+          <div style={{color:"#FFFFFF", display:"flex",gap:"10px", flexWrap:"wrap"}}>{tempList.map((temp)=>
+        
+       {
+        return
+        
+        <div style={{color:"#FFFFFF",display:"flex",flexDirection:"column"}}>
+        <div style={{color:"#FFFFFF"}}>{temp[0]}</div>
+        <div style={{color:"#FFFFFF"}}>{temp[1]}</div>
+        </div>
+        
+      
+    
+        }
+        
+        )}</div>
+        
+        
+        </div>
 
      
     </>
