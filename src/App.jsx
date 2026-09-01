@@ -10,7 +10,13 @@ function App() {
 
    useEffect(()=> {
     fetchWeatherData();
-   },[])
+   },[]);
+
+   useEffect(() => {
+    if (weatherData?.hourly) {
+      setWeatherInfo();
+    }
+  }, [weatherData]); 
 
    const fetchWeatherData = async () => {
 
@@ -21,14 +27,27 @@ function App() {
           console.log(data);
 
           setWeatherData(data);
-
-          for(let i=0;i<24;i++)
-          {
-           setTempList[i][0]=weatherData?.hourly?.temperature_2m[i];
-           setTempList[i][1]=weatherData?.hourly?.time[i];
-          }
+         
    }
 
+   const setWeatherInfo = () =>
+   {
+   let tempArr=[];
+   for(let i=0;i<24;i++)
+   {
+    tempArr.push([
+      weatherData?.hourly?.temperature_2m[i],
+      weatherData?.hourly?.time[i]
+    ]);
+   }
+   setTempList(tempArr);
+
+  console.log(tempList)
+
+   
+  }
+
+  
  
   
  
@@ -56,35 +75,30 @@ function App() {
         <h1 style={{color:"#FFFFFF"}}>Hourly Temperature Today</h1> 
         {/* <div style={{color:"#FFFFFF", display:"flex",gap:"10px", flexWrap:"wrap"}}>{weatherData?.hourly?.temperature_2m.map((temp)=>
         
-       {
-        return <div style={{color:"#FFFFFF", display:"flex"}}>{temp}</div>
-      
-    
-        }
+      //  {
+      //   return <div style={{color:"#FFFFFF", display:"flex"}}>{temp}</div>
+      //   }
         
-        )}</div>
+      //   )}</div>
 
-        <div style={{color:"#FFFFFF", display:"flex",gap:"10px", flexWrap:"wrap"}}>{weatherData?.hourly?.time.map((temp)=>
+      //   <div style={{color:"#FFFFFF", display:"flex",gap:"10px", flexWrap:"wrap"}}>{weatherData?.hourly?.time.map((temp)=>
         
-        {
-         return <div style={{color:"#FFFFFF", display:"flex"}}>{temp.substr(11,16)}</div>}
-        
-         
-         )}</div> */}
+      //   {
+      //    return <div style={{color:"#FFFFFF", display:"flex"}}>{temp.substr(11,16)}</div>
+      //   }
+      //    )}</div> */}
 
-          <div style={{color:"#FFFFFF", display:"flex",gap:"10px", flexWrap:"wrap"}}>{tempList.map((temp)=>
+          <div style={{color:"#FFFFFF", display:"flex",gap:"10px", flexWrap:"wrap"}}>
+            {tempList.map(([temp,time],index)=>
+        (
         
-       {
-        return
-        
-        <div style={{color:"#FFFFFF",display:"flex",flexDirection:"column"}}>
-        <div style={{color:"#FFFFFF"}}>{temp[0]}</div>
-        <div style={{color:"#FFFFFF"}}>{temp[1]}</div>
+        <div key={index} style={{color:"#FFFFFF",display:"flex",flexDirection:"column"}}>
+        <div style={{color:"#FFFFFF"}}>{temp}</div>
+        <div style={{color:"#FFFFFF"}}>{time.substr(11,16)}</div>
         </div>
-        
-      
+            )
     
-        }
+
         
         )}</div>
         
