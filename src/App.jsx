@@ -89,12 +89,13 @@ function App() {
       //    )}</div> */}
 
           <div style={{color:"#FFFFFF", display:"flex",gap:"10px", flexWrap:"wrap"}}>
-            {tempList.map(([temp,time],index)=>
+            {tempList.map(([temp,times],index) =>
         (
         
         <div key={index} style={{color:"#FFFFFF",display:"flex",flexDirection:"column"}}>
-        <div style={{color:"#FFFFFF"}}>{temp}</div>
-        <div style={{color:"#FFFFFF"}}>{time.substr(11,16)}</div>
+        <div><img src="./assets/istockphoto-824800468-1024x1024.jpg" width="100" height="100"/></div>
+        <div style={{color:"#FFFFFF"}}>{temp}{weatherData?.current_units?.temperature_2m}</div>
+        <div style={{color:"#FFFFFF"}}>{times?.substring(11,16)}</div>
         </div>
             )
     
