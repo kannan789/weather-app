@@ -1,5 +1,7 @@
 import { useState , useEffect} from 'react'
 import './App.css'
+import weatherIcon from './assets/istockphoto-824800468-1024x1024.jpg';
+
 
 function App() {
 
@@ -88,12 +90,12 @@ function App() {
       //   }
       //    )}</div> */}
 
-          <div style={{color:"#FFFFFF", display:"flex",gap:"10px", flexWrap:"wrap"}}>
+          <div style={{color:"#FFFFFF", display:"flex",gap:"20px", flexWrap:"wrap",alignItems:"center",justifyContent:"center"}}>
             {tempList.map(([temp,times],index) =>
         (
         
         <div key={index} style={{color:"#FFFFFF",display:"flex",flexDirection:"column"}}>
-        <div><img src="./assets/istockphoto-824800468-1024x1024.jpg" width="100" height="100"/></div>
+        <div style={{}}><img src={weatherIcon} width="150px" height="150px"/></div>
         <div style={{color:"#FFFFFF"}}>{temp}{weatherData?.current_units?.temperature_2m}</div>
         <div style={{color:"#FFFFFF"}}>{times?.substring(11,16)}</div>
         </div>
