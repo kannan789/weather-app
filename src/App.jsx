@@ -59,7 +59,7 @@ function App() {
 
     <h1 style={{color:"lightpink"}}>Today's Weather</h1>
       
-      <div style={{color:"#FFFFFF",marginTop:"100px",fontSize:"25px",marginLeft:"20px",textAlign:"left"}}>
+      <div style={{color:"#FFFFFF",marginTop:"10px",fontSize:"25px",marginLeft:"20px",textAlign:"left"}}>
 
         <h3>Latitude:{weatherData.latitude}</h3>
 
